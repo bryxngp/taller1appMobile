@@ -26,18 +26,41 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
     },
-    titulo:{
+    titulo: {
         fontSize: 20,
         fontWeight: 'bold',
     },
-
-image: {
-    flex: 1,
-    justifyContent: 'center'
-},
-icono: {
-    flex: 1,
-    justifyContent: 'center'
-},
+    tituloPrincipal: {
+        fontSize: 40,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: 'blue'
+    },
+    image: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    // icono: {
+    //     flex: 1,
+    //     justifyContent: 'center'
+    // },
+    boton: {
+        backgroundColor: '#007AFF',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 20,
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    botonTexto: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    registro: {
+        marginTop: 10,
+        color: 'black',
+        textAlign: 'center',
+    },
 
 })

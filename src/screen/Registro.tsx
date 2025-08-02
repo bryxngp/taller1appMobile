@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, ImageBackground, Text, TextInput, View } from 'react-native'
+import { Image, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { styles } from '../themes/appTheme'
 import { SafeAreaView } from 'react-native-safe-area-context';
 //import Icono from '../assets/icons/playstation.svg';
@@ -23,12 +23,11 @@ export const Registro = () => {
             <SafeAreaView style={styles.container} edges={['left', 'right']}>
                 <ImageBackground source={image} resizeMode="cover" style={styles.image}>
 
-                    <View>
-                        {/* <Icono width={32} height={32}/> */}
-                        <Text style={styles.titulo}>Registro</Text>
-                    </View>
-        
                     <SafeAreaView style={styles.ventana}>
+
+                        {/* <Icono width={32} height={32}/> */}
+                        <Text style={styles.tituloPrincipal}>Registro</Text>
+
                         <Text style={styles.titulo}>Nombre</Text>
                         <TextInput
                             style={styles.input}
@@ -68,6 +67,9 @@ export const Registro = () => {
                             placeholder="Ejm. 123456 / solo numeros"
                             keyboardType="numeric"
                         />
+                        <TouchableOpacity style={styles.boton}>
+                            <Text style={styles.botonTexto}>Iniciar Sesión</Text>
+                        </TouchableOpacity>
                     </SafeAreaView>
                 </ImageBackground>
             </SafeAreaView>
