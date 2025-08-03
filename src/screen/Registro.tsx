@@ -2,10 +2,13 @@ import React from 'react'
 import { Image, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { styles } from '../themes/appTheme'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParams } from '../navegacion/StackNavigator';
 //import Icono from '../assets/icons/playstation.svg';
 
+type Props = StackScreenProps<RootStackParams, 'Registro'>;
 
-export const Registro = () => {
+export const Registro = ({ navigation }: Props) => {
 
     const [nombre, setNombre] = React.useState('');
     const [apellido, setApellido] = React.useState('');
@@ -26,16 +29,16 @@ export const Registro = () => {
                     <SafeAreaView style={styles.ventana}>
 
                         {/* <Icono width={32} height={32}/> */}
-                        <Text style={styles.tituloPrincipal}>Registro</Text>
+                        <Text style={styles.tituloPrincipal}>Registro:</Text>
 
-                        <Text style={styles.titulo}>Nombre</Text>
+                        <Text style={styles.titulo}>Nombre:</Text>
                         <TextInput
                             style={styles.input}
                             onChangeText={setNombre}
                             value={nombre}
                             placeholder="Ingresar Nombre"
                         />
-                        <Text style={styles.titulo}>Apellido</Text>
+                        <Text style={styles.titulo}>Apellido:</Text>
                         <TextInput
                             style={styles.input}
                             onChangeText={setApellido}
@@ -43,7 +46,7 @@ export const Registro = () => {
                             placeholder="Ingresar Apellido"
                             keyboardType="ascii-capable"
                         />
-                        <Text style={styles.titulo}>Correo Electronico</Text>
+                        <Text style={styles.titulo}>Correo Electronico:</Text>
                         <TextInput
                             style={styles.input}
                             onChangeText={setCorreo}
@@ -51,7 +54,7 @@ export const Registro = () => {
                             placeholder="Ejm. ejemplo@gmail.com"
                             keyboardType="email-address"
                         />
-                        <Text style={styles.titulo}>Usuario</Text>
+                        <Text style={styles.titulo}>Usuario:</Text>
                         <TextInput
                             style={styles.input}
                             onChangeText={setUsuario}
@@ -59,7 +62,7 @@ export const Registro = () => {
                             placeholder="Usuario"
                             keyboardType="ascii-capable"
                         />
-                        <Text style={styles.titulo}>Contraseña</Text>
+                        <Text style={styles.titulo}>Contraseña:</Text>
                         <TextInput
                             style={styles.input}
                             onChangeText={setContraseña}
@@ -68,7 +71,11 @@ export const Registro = () => {
                             keyboardType="numeric"
                         />
                         <TouchableOpacity style={styles.boton}>
-                            <Text style={styles.botonTexto}>Iniciar Sesión</Text>
+                            <Text style={styles.botonTexto}>Registrarse</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => navigation.navigate('IniciarSecion')}>
+                            <Text style={styles.registro}>Inicia Sesion !!!</Text>
                         </TouchableOpacity>
                     </SafeAreaView>
                 </ImageBackground>

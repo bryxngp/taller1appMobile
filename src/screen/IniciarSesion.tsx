@@ -1,11 +1,14 @@
 import React from 'react'
-import { Image, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { styles } from '../themes/appTheme'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParams } from '../navegacion/StackNavigator';
 //import Icono from '../assets/icons/playstation.svg';
 
+type  Props = StackScreenProps<RootStackParams,'IniciarSecion'>;
 
-export const IniciarSecion = () => {
+export const IniciarSecion = ({navigation}: Props) => {
 
     const [usuario, setUsuario] = React.useState('');
     const [contraseña, setContraseña] = React.useState('');
@@ -45,7 +48,8 @@ export const IniciarSecion = () => {
                             <Text style={styles.botonTexto}>Iniciar</Text>
                         </TouchableOpacity>
 
-                        <Text style={styles.registro}>Regístrate</Text>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Registro')}>
+                        <Text style={styles.registro}>Regístrate Aqui!!!</Text></TouchableOpacity>
 
                     </SafeAreaView>
                 </ImageBackground>
@@ -54,3 +58,4 @@ export const IniciarSecion = () => {
         </View>
     )
 }
+

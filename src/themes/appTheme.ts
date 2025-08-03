@@ -56,11 +56,13 @@ export const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
+
     },
     registro: {
         marginTop: 10,
         color: 'black',
         textAlign: 'center',
     },
+
 
 })
