@@ -1,9 +1,9 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { IniciarSecion } from '../screen/IniciarSesion';
+import { IniciarSesion } from '../screen/IniciarSesion';
 import { Registro } from '../screen/Registro';
 
 export type RootStackParams = {
-    IniciarSecion: undefined,
+    IniciarSesion: undefined,
     Registro: undefined,
 }
 
@@ -19,7 +19,7 @@ export const StackNavigator = () => {
                 headerShown:false,
             }}
         >
-            <Stack.Screen name="IniciarSecion" options={{ title: 'Home' }} component={IniciarSecion} />
+            <Stack.Screen name="IniciarSesion" options={{ title: 'Home' }} component={IniciarSesion} />
             <Stack.Screen name="Registro" component={Registro} />
         </Stack.Navigator>
     );

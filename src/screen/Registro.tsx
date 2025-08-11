@@ -74,7 +74,7 @@ export const Registro = ({ navigation }: Props) => {
                             <Text style={styles.botonTexto}>Registrarse</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => navigation.navigate('IniciarSecion')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('IniciarSesion')}>
                             <Text style={styles.registro}>Inicia Sesion !!!</Text>
                         </TouchableOpacity>
                     </SafeAreaView>
