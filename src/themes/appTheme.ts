@@ -63,6 +63,9 @@ export const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
     },
-
-
+    iconForm:{
+        position: 'absolute',
+        bottom: 112,
+        right: 25,
+    },
 })
