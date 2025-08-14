@@ -72,7 +72,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)', //negro transparente
         justifyContent: 'center',
         alignItems: 'center',
-        
+
     },
 
     modal: {
@@ -120,7 +120,7 @@ export const styles = StyleSheet.create({
     containerForm: {
         marginVertical: 10
     },
-  
+
     textRedirect: {
         color: PRIMARY_COLOR,
         fontWeight: 'bold'

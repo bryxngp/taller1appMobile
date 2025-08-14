@@ -26,7 +26,7 @@ export interface Cart {
 export const HomeScreen = () => {
     //arreglo con la listra de usuarios
     const products = [
-        { id: 1, name: 'Resident Evil 4: Remake', price: 60.0, stock: 15, pathImage: 'https://image.api.playstation.com/vulcan/ap/rnd/202207/2509/85p2Dwh5iDhUzRKe40QeNYh3.png' },
+        { id: 1, name: 'Resident Evil 4: Remake', price: 60.0, stock: 1, pathImage: 'https://image.api.playstation.com/vulcan/ap/rnd/202207/2509/85p2Dwh5iDhUzRKe40QeNYh3.png' },
         { id: 2, name: 'God of War Ragnarok', price: 40.0, stock: 10, pathImage: 'https://image.api.playstation.com/vulcan/ap/rnd/202503/2016/b69c06fb108299866057126b0d3a0530bdf96a39d2ce1cb9.png' },
         { id: 3, name: 'Silent Hill', price: 50.0, stock: 8, pathImage: 'https://image.api.playstation.com/vulcan/ap/rnd/202210/2000/IgwsFz9BiBrFvyV7pIWpoVgd.png' },
         { id: 4, name: 'Mortal Kombat 1', price: 15.0, stock: 3, pathImage: 'https://image.api.playstation.com/vulcan/ap/rnd/202305/1515/1cc63f4f4b2c9a9852fabefba4ca7eea936b1ef7867811a5.png' },
@@ -40,7 +40,7 @@ export const HomeScreen = () => {
 
     const image = { uri: 'https://www.playstation.com/content/dam/global_pdc/en/campaigns-and-promotions/2024/2024-wrap-up/wallpapers/2024-WrapUp-Mobile-Wallpaper.jpg' };
 
-     //hook useState para manejar el estado de los productos 
+    //hook useState para manejar el estado de los productos 
     const [listProducts, setListProducts] = useState<Product[]>(products) //arreglo de productos
 
     //hook useState para controlar los productos del carrito
@@ -58,10 +58,10 @@ export const HomeScreen = () => {
     }
 
     return (
-        
+
         <View style={styles.container}>
-            <StatusBar backgroundColor={'white'}/>
-            
+            <StatusBar backgroundColor={'white'} />
+
 
             <View style={localStyles.headerHome}>
                 <TitleComponent title="Videojuegos" />
@@ -75,7 +75,7 @@ export const HomeScreen = () => {
             <ImageBackground source={image} resizeMode="cover" style={styles.imagen}>
                 <FlatList
                     data={products}
-                    renderItem={({ item }) => <CardProduct item={item} updateStock={upadteStock}/>}
+                    renderItem={({ item }) => <CardProduct item={item} updateStock={upadteStock} />}
                     keyExtractor={item => item.id.toString()}
                     numColumns={2}
                     columnWrapperStyle={{ justifyContent: 'space-between' }}
