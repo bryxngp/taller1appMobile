@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { SECONDARY_COLOR } from "../commons/constants";
 
 export const styles = StyleSheet.create({
     container: {
@@ -36,14 +37,10 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'blue'
     },
-    image: {
+    imagen: {
         flex: 1,
         justifyContent: 'center'
     },
-    // icono: {
-    //     flex: 1,
-    //     justifyContent: 'center'
-    // },
     boton: {
         backgroundColor: '#007AFF',
         paddingVertical: 12,
@@ -65,7 +62,46 @@ export const styles = StyleSheet.create({
     },
     iconForm:{
         position: 'absolute',
-        bottom: 135,
+        bottom: 15,
         right: 25,
     },
+
+    
+    containerModal: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.5)', //negro transparente
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modal: {
+        padding: 20,
+        margin: 15,
+        borderRadius: 10,
+        backgroundColor: SECONDARY_COLOR,
+    },
+    image1: {
+        width: 90,
+        height: 110,
+        borderRadius: 15,
+        alignSelf: 'center',
+    },
+    textModul:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginTop: 15,
+    },
+    imageModul: {
+        width: 150,
+        height: 170,
+        borderRadius: 10,
+        alignSelf: 'center',
+        elevation: 10,
+        shadowColor: 'red'
+    },
+    iconClose:{
+        marginBottom: 10,
+        marginLeft: 150,
+        fontSize: 25,
+    }
 })

@@ -1,116 +1,122 @@
-import React, { useState } from 'react';
-import { Alert, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react'
+import { Alert, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { styles } from '../themes/appTheme';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackScreenProps } from '@react-navigation/stack';
-import { RootStackParams } from '../navegacion/StackNavigator';
+import { ImputComponent } from '../components/Imputcomponent';
+import { ButtonComponent } from '../components/ButtonComponent';
+import { PRIMARY_COLOR } from '../commons/constants';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 
-type Props = StackScreenProps<RootStackParams, 'IniciarSesion'>;
-
-// Interfaz para el formulario de registro
-interface FormRegistro {
-    nombre: string;
-    apellido: string;
-    correo: string;
-    usuario: string;
-    contraseña: string;
+//interface para las propiedades
+interface Props {
+    users: User[]; //arreglos con la lista de usuarios
 }
 
-export const IniciarSesion = ({ navigation }: Props) => {
+//interfacepara el objeto del formulario
+interface FormLogin {
+    username: string,
+    password: string
+}
 
-    const [formRegistro, setFormRegistro] = useState<FormRegistro>({
-        nombre: '',
-        apellido: '',
-        correo: '',
-        usuario: '',
-        contraseña: '',
+//definir una interfas para los objetos de mi arreglo users
+interface User {
+    id: number,
+    name: string,
+    username: string,
+    password: string
+}
+
+export const IniciarSecion = ({ users }: Props) => {
+
+    //hook useState para manejar el estado del formulario
+    const [formLogin, setFormLogin] = useState<FormLogin>({
+        username: '',
+        password: ''
     });
 
+    //hook de navegacion
+    const navigation = useNavigation();
 
-    const changeForm = (property: keyof FormRegistro, value: string): void => {
-        setFormRegistro({ ...formRegistro, [property]: value });
-    };
+    //hook useState para manejar el estado del formulario
+    const [hiddenPasword, setHiddenPasword] = useState<boolean>(true);
 
+    //funcion para modificar el estado del formulario
+    const changeForm = (property: string, value: string): void => {
+        setFormLogin({ ...formLogin, [property]: value });
+    }
 
-    const handleRegister = (): void => {
-        const { nombre, apellido, correo, usuario, contraseña } = formRegistro;
+    //funcion para validar el usuario y la contraseña
+    const verifyUser = (): User | undefined => {
+        const existUser = users.find(user => user.username == formLogin.username && user.password == formLogin.password);
+        return existUser;
+    }
 
-        if (
-            nombre === '' || apellido === '' || correo === '' || usuario === '' || contraseña === '') {
-            Alert.alert('Error', 'Todos los campos son obligatorios');
-            return;
+    //funcion permitir iniciar sesion
+    const handleLogin = (): void => {
+        if (formLogin.username == '' || formLogin.password == '') {
+            Alert.alert('Error', 'Ingresar todos los datos');
+            return; // si falta algun campo nos saca del flujo
         }
 
-        console.log('Datos registrados:', formRegistro);
-        Alert.alert('Registro exitoso', 'Usuario registrado correctamente');
-    };
+        //verificar si el usuario existe
+        if (!verifyUser()) { //verifyUser() == undefined <-- esto es igual 
+            Alert.alert('Error', 'Usuario y/o contraseña incorrectos');
+            return;
+        } else {
+            Alert.alert('Bienvenido');
+        }
+        //console.log(formLogin);
+        navigation.dispatch(CommonActions.navigate({ name: 'Home' }))
+    }
 
-    const image = {
-        uri: 'https://www.playstation.com/content/dam/global_pdc/en/campaigns-and-promotions/2024/2024-wrap-up/wallpapers/2024-WrapUp-Mobile-Wallpaper.jpg',
-    };
+    const image = { uri: 'https://www.playstation.com/content/dam/global_pdc/en/campaigns-and-promotions/2024/2024-wrap-up/wallpapers/2024-WrapUp-Mobile-Wallpaper.jpg' };
 
     return (
+
         <View style={styles.container}>
+
             <SafeAreaView style={styles.container} edges={['left', 'right']}>
-                <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+                <ImageBackground source={image} resizeMode="cover" style={styles.imagen}>
+
                     <SafeAreaView style={styles.ventana}>
-                        <Text style={styles.tituloPrincipal}>Registro:</Text>
 
-                        <Text style={styles.titulo}>Nombre:</Text>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(value) => changeForm('nombre', value)}
-                            value={formRegistro.nombre}
-                            placeholder="Ingresar Nombre"
-                        />
+                        <Text style={styles.tituloPrincipal}>Iniciar Sesión</Text>
 
-                        <Text style={styles.titulo}>Apellido:</Text>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(value) => changeForm('apellido', value)}
-                            value={formRegistro.apellido}
-                            placeholder="Ingresar Apellido"
-                            keyboardType="ascii-capable"
-                        />
+                        <Text style={styles.titulo}>Usuario</Text>
+                        <View>
+                            <ImputComponent
+                                placeholder="Usuario"
+                                keyboardType="default"
+                                changeForm={changeForm}
+                                property='username'
+                            />
+                            <Text style={styles.titulo}>Contraseña</Text>
+                            <ImputComponent
+                                placeholder="Ejm. 123456"
+                                keyboardType="numeric"
+                                changeForm={changeForm}
+                                property='password'
+                                isPassword={hiddenPasword}
+                            />
 
-                        <Text style={styles.titulo}>Correo Electrónico:</Text>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(value) => changeForm('correo', value)}
-                            value={formRegistro.correo}
-                            placeholder="Ejm. ejemplo@gmail.com"
-                            keyboardType="email-address"
-                        />
+                            <Icon name={hiddenPasword ? 'visibility' : 'visibility-off'}
+                                style={styles.iconForm}
+                                size={30}
+                                color={PRIMARY_COLOR}
+                                onPress={() => setHiddenPasword(!hiddenPasword)} />
+                        </View>
+                        <ButtonComponent texto='Iniciar Sesión' onPress={handleLogin} />
 
-                        <Text style={styles.titulo}>Usuario:</Text>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(value) => changeForm('usuario', value)}
-                            value={formRegistro.usuario}
-                            placeholder="Usuario"
-                            keyboardType="ascii-capable"
-                        />
+                        <TouchableOpacity onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'Registro' }))}>
+                            <Text style={styles.registro}>Regístrate Aqui!!!</Text></TouchableOpacity>
 
-                        <Text style={styles.titulo}>Contraseña:</Text>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(value) => changeForm('contraseña', value)}
-                            value={formRegistro.contraseña}
-                            placeholder="Ejm. 123456 / solo números"
-                            keyboardType="numeric"
-                        />
-
-                        <TouchableOpacity style={styles.boton} onPress={handleRegister}>
-                            <Text style={styles.botonTexto}>Registrarse</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={() => navigation.navigate('IniciarSesion')}>
-                            <Text style={styles.registro}>Inicia Sesión !!!</Text>
-                        </TouchableOpacity>
                     </SafeAreaView>
                 </ImageBackground>
             </SafeAreaView>
 
         </View>
-    );
-};
+    )
+}
+
