@@ -1,7 +1,10 @@
-import React from 'react'
-import { FlatList, Text, View, StyleSheet, SafeAreaView, ImageBackground } from 'react-native'
+import React, { useState } from 'react'
+import { FlatList, Text, View, StyleSheet, SafeAreaView, ImageBackground, StatusBar } from 'react-native'
 import { styles } from '../../themes/appTheme';
 import { CardProduct } from './components/CardProduct';
+import { PRIMARY_COLOR } from '../../commons/constants';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { TitleComponent } from '../../components/TitleComponent';
 
 //interface para el arreglo de productos
 export interface Product {
@@ -10,6 +13,14 @@ export interface Product {
     price: number;
     stock: number;
     pathImage: string;
+}
+
+export interface Cart {
+    id: number,
+    name: string,
+    price: number,
+    quantity: number,
+    total: number,
 }
 
 export const HomeScreen = () => {
@@ -29,17 +40,74 @@ export const HomeScreen = () => {
 
     const image = { uri: 'https://www.playstation.com/content/dam/global_pdc/en/campaigns-and-promotions/2024/2024-wrap-up/wallpapers/2024-WrapUp-Mobile-Wallpaper.jpg' };
 
+     //hook useState para manejar el estado de los productos 
+    const [listProducts, setListProducts] = useState<Product[]>(products) //arreglo de productos
+
+    //hook useState para controlar los productos del carrito
+    const [cart, setCart] = useState<Cart[]>([]);
+
+    //Funcion para actualizar el stock 
+    const upadteStock = (id: number, quantity: number) => {
+        const updateProductos = listProducts.map(product => product.id == id
+            ? { ...product, stock: product.stock - quantity } : product); //entonces ?
+        //actualizar stock
+        setListProducts(updateProductos);
+
+        //funcion para anadir al carrito ROY
+
+    }
+
     return (
-            <SafeAreaView style={styles.container}>
-                <ImageBackground source={image} resizeMode="cover" style={styles.imagen}>
-                    <FlatList
-                        data={products}
-                        renderItem={({ item }) => <CardProduct item={item} />}
-                        keyExtractor={item => item.id.toString()}
-                        numColumns={2}
-                        columnWrapperStyle={{ justifyContent: 'space-between' }}
+        
+        <View style={styles.container}>
+            <StatusBar backgroundColor={'white'}/>
+            
+
+            <View style={localStyles.headerHome}>
+                <TitleComponent title="Videojuegos" />
+                <View style={localStyles.containerIcon}>
+                    <Text style={localStyles.textIconCart}>CARRITO</Text>
+                    <Icon name='add-shopping-cart' size={27} color={'black'}
                     />
-                </ImageBackground>
-            </SafeAreaView>
+                </View>
+            </View>
+
+            <ImageBackground source={image} resizeMode="cover" style={styles.imagen}>
+                <FlatList
+                    data={products}
+                    renderItem={({ item }) => <CardProduct item={item} updateStock={upadteStock}/>}
+                    keyExtractor={item => item.id.toString()}
+                    numColumns={2}
+                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                />
+            </ImageBackground>
+        </View>
+
+
+
     )
 }
+
+const localStyles = StyleSheet.create({
+    headerHome: {
+        flexDirection: 'row',
+        alignItems: 'center',
+
+    },
+    containerIcon: {
+        flex: 1,
+        alignItems: 'flex-end',
+        paddingHorizontal: 30,
+
+
+    },
+
+    textIconCart: {
+        backgroundColor: 'white',
+        paddingHorizontal: 5,
+        borderRadius: 25,
+        fontWeight: 'bold',
+        fontSize: 13,
+
+    },
+})

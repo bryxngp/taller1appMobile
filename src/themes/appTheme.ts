@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { SECONDARY_COLOR } from "../commons/constants";
+import { PRIMARY_COLOR, SECONDARY_COLOR } from "../commons/constants";
 
 export const styles = StyleSheet.create({
     container: {
@@ -60,19 +60,21 @@ export const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
     },
-    iconForm:{
+    iconForm: {
         position: 'absolute',
         bottom: 15,
         right: 25,
     },
 
-    
+
     containerModal: {
         flex: 1,
         backgroundColor: 'rgba(0,0,0,0.5)', //negro transparente
         justifyContent: 'center',
         alignItems: 'center',
+        
     },
+
     modal: {
         padding: 20,
         margin: 15,
@@ -85,7 +87,7 @@ export const styles = StyleSheet.create({
         borderRadius: 15,
         alignSelf: 'center',
     },
-    textModul:{
+    textModul: {
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
@@ -99,9 +101,97 @@ export const styles = StyleSheet.create({
         elevation: 10,
         shadowColor: 'red'
     },
-    iconClose:{
+    iconClose: {
         marginBottom: 10,
         marginLeft: 150,
         fontSize: 25,
-    }
+    },
+    titleWelcome: {
+        fontSize: 17,
+        color: PRIMARY_COLOR,
+        fontWeight: 'bold',
+
+    },
+    description: {
+        fontSize: 15,
+        color: 'black',
+        paddingVertical: 10,
+    },
+    containerForm: {
+        marginVertical: 10
+    },
+  
+    textRedirect: {
+        color: PRIMARY_COLOR,
+        fontWeight: 'bold'
+    },
+    headerModal: {
+        flexDirection: 'row',
+        borderBottomColor: '#ccc',
+        borderBottomWidth: 1,
+        padding: 10
+
+    },
+    containerIcon: {
+
+        flex: 1,
+        alignItems: 'flex-end'
+    },
+
+    titleModal: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: PRIMARY_COLOR,
+    },
+    imageModal: {
+        width: 150,
+        height: 120,
+        margin: 5,
+
+
+    },
+    containerQuantity: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    buttonQuantity: {
+        height: 50,
+        width: 50,
+        backgroundColor: PRIMARY_COLOR,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10,
+        borderRadius: 25,
+    },
+
+    buttonQuantityText: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
+
+    textQuantity: {
+        fontSize: 18,
+    },
+
+    buttonAddCart: {
+        backgroundColor: PRIMARY_COLOR,
+        marginTop: 10,
+        paddingVertical: 10,
+        borderRadius: 7,
+        alignItems: 'center',
+
+    },
+    buttonAddCartText: {
+        color: 'white',
+        fontWeight: 'bold',
+
+    },
+    textAgotado: {
+        color: 'red',
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
 })

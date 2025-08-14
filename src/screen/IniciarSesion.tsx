@@ -64,8 +64,6 @@ export const IniciarSecion = ({ users }: Props) => {
         if (!verifyUser()) { //verifyUser() == undefined <-- esto es igual 
             Alert.alert('Error', 'Usuario y/o contraseña incorrectos');
             return;
-        } else {
-            Alert.alert('Bienvenido');
         }
         //console.log(formLogin);
         navigation.dispatch(CommonActions.navigate({ name: 'Home' }))

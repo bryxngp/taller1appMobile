@@ -8,9 +8,10 @@ import { Product } from '../HomeScreen';
 //interface para las propiedades
 interface Props {
     item: Product; //cada producto del arreglo 
+    updateStock:(id : number, quantity: number)=> void;
 }
 
-export const CardProduct = ({ item }: Props) => {
+export const CardProduct = ({ item, updateStock}: Props) => {
     //hook useState para manejar el estado de modal
     const [showModal, setModalVisible] = useState<boolean>(false);
 
@@ -30,7 +31,7 @@ export const CardProduct = ({ item }: Props) => {
                     />
                 </View>
             </View>
-            <ModalProduct item={item} visible={showModal} setModalVisible={()=>setModalVisible(!showModal)} />
+            <ModalProduct item={item} visible={showModal} setModalVisible={()=>setModalVisible(!showModal)} updateStock = {updateStock} />
         </View>
     )
 }
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
         elevation: 5,
         flex: 1,
         width: 160,
+        
     },
     title: {
         marginTop: 10,
