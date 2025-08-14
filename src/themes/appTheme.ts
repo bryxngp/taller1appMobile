@@ -194,4 +194,13 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold'
     },
+    image: {
+        width: 150,
+        height: 160,
+        alignSelf: 'center',
+        borderRadius: 10,
+        marginTop: 10,
+        shadowColor: 'red',
+        elevation: 10,
+    },
 })
