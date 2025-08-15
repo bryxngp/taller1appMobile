@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Alert, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { styles } from '../themes/appTheme';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StackScreenProps } from '@react-navigation/stack';
 import { ImputComponent } from '../components/Imputcomponent';
 import { ButtonComponent } from '../components/ButtonComponent';
 import { PRIMARY_COLOR } from '../commons/constants';
@@ -109,11 +108,9 @@ export const IniciarSecion = ({ users }: Props) => {
 
                         <TouchableOpacity onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'Registro' }))}>
                             <Text style={styles.registro}>Regístrate Aqui!!!</Text></TouchableOpacity>
-
                     </SafeAreaView>
                 </ImageBackground>
             </SafeAreaView>
-
         </View>
     )
 }

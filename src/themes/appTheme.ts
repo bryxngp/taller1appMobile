@@ -86,6 +86,10 @@ export const styles = StyleSheet.create({
         height: 110,
         borderRadius: 15,
         alignSelf: 'center',
+        marginTop: 10,
+        marginBottom: 10,
+        elevation: 7,
+        shadowColor: 'red'
     },
     textModul: {
         fontSize: 20,
@@ -122,8 +126,11 @@ export const styles = StyleSheet.create({
     },
 
     textRedirect: {
+        fontSize: 15,
         color: PRIMARY_COLOR,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginTop: 10,
+        alignSelf: 'center',
     },
     headerModal: {
         flexDirection: 'row',
@@ -173,6 +180,7 @@ export const styles = StyleSheet.create({
 
     textQuantity: {
         fontSize: 18,
+        fontWeight: 'bold'
     },
 
     buttonAddCart: {

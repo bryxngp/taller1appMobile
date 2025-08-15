@@ -72,18 +72,35 @@ export const HomeScreen = () => {
             return;
         }
 
-        //crear producto para el carrito
-        const newProductCart: Cart = {
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            quantity: quantity,
-            total: product.price * quantity
-        }
 
-        //añadir en el carrito
-        setcart([...cart, newProductCart]);
-        // console.log(cart);
+        // Verifica el producto del carrito
+        const existingProduct = cart.find(product => product.id === id);
+
+        if (existingProduct) {
+            //actualizar la cantidad
+            const updatedCart = cart.map(product =>
+                product.id === id
+                    ? {
+                        ...product,
+                        quantity: product.quantity + quantity,
+                        total: (product.quantity + quantity) * product.price
+                    }
+                    : product
+            );
+            setcart(updatedCart);
+        } else {
+            //crear producto para el carrito
+            const newProductCart: Cart = {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                quantity: quantity,
+                total: product.price * quantity
+            }
+            //añadir en el carrito
+            setcart([...cart, newProductCart]);
+            // console.log(cart);
+        }
 
     }
 
@@ -96,10 +113,10 @@ export const HomeScreen = () => {
                 <TitleComponent title="Videojuegos" />
                 <View style={localStyles.containerIcon}>
                     <Text style={localStyles.textIconCart}>{cart.length}</Text>
-                    <Icon name='add-shopping-cart' 
-                    size={27} 
-                    color={'black'}
-                    onPress={() => setshowModal(!showModal)}
+                    <Icon name='add-shopping-cart'
+                        size={27}
+                        color={'black'}
+                        onPress={() => setshowModal(!showModal)}
                     />
                 </View>
             </View>
@@ -113,11 +130,11 @@ export const HomeScreen = () => {
                     columnWrapperStyle={{ justifyContent: 'space-between' }}
                 />
             </ImageBackground>
-            <ModalCart 
-            visible={showModal} 
-            setModalVisible={()=>setshowModal(!showModal)} 
-            cart={cart}
-            closeCart={setcart}
+            <ModalCart
+                visible={showModal}
+                setModalVisible={() => setshowModal(!showModal)}
+                cart={cart}
+                closeCart={setcart}
             />
         </View>
 

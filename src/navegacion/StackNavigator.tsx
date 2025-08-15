@@ -42,7 +42,7 @@ export const StackNavigator = () => {
             }}
         >
             <Stack.Screen name="IniciarSecion" options={{ headerShown: false }} children={() => <IniciarSecion users={listUsers} />} />
-            {/* <Stack.Screen name="Registro" options={{ headerShown: false }} children={() => <Registro users={listUsers} addUser={addUser} />} /> */}
+            <Stack.Screen name="Registro" options={{ headerShown: false }} children={() => <Registro users={listUsers} addUser={addUser} />} />
             <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
         </Stack.Navigator>
     );

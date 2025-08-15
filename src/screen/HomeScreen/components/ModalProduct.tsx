@@ -51,15 +51,6 @@ export const ModalProduct = ({ visible, item, setModalVisible, updateStock }: Pr
                     ) : (
                         <View>
                             <View style={styles.containerQuantity}>
-                                <TouchableOpacity
-                                    style={styles.buttonQuantity}
-                                    onPress={() => setQuantity(quantity + 1)}
-                                    disabled={quantity == item.stock}
-                                >
-                                    <Text style={styles.buttonQuantityText}>+</Text>
-                                </TouchableOpacity>
-
-                                <Text style={styles.textQuantity}>{quantity}</Text>
 
                                 <TouchableOpacity
                                     style={styles.buttonQuantity}
@@ -68,6 +59,17 @@ export const ModalProduct = ({ visible, item, setModalVisible, updateStock }: Pr
                                 >
                                     <Text style={styles.buttonQuantityText}>-</Text>
                                 </TouchableOpacity>
+
+                                <Text style={styles.textQuantity}>{quantity}</Text>
+
+                                <TouchableOpacity
+                                    style={styles.buttonQuantity}
+                                    onPress={() => setQuantity(quantity + 1)}
+                                    disabled={quantity == item.stock}
+                                >
+                                    <Text style={styles.buttonQuantityText}>+</Text>
+                                </TouchableOpacity>
+                                
                             </View>
 
                             <View style={{ alignItems: 'center' }}>
