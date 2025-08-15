@@ -104,6 +104,8 @@ export const HomeScreen = () => {
 
     }
 
+    const carritoVacio = cart.length == 0;
+
     return (
 
         <View style={styles.container}>
@@ -113,10 +115,11 @@ export const HomeScreen = () => {
                 <TitleComponent title="Videojuegos" />
                 <View style={localStyles.containerIcon}>
                     <Text style={localStyles.textIconCart}>{cart.length}</Text>
-                    <Icon name='add-shopping-cart'
+                    <Icon name={carritoVacio? 'block' : 'add-shopping-cart'}
                         size={27}
                         color={'black'}
                         onPress={() => setshowModal(!showModal)}
+                        disabled = {carritoVacio}
                     />
                 </View>
             </View>
